@@ -11,9 +11,11 @@ OpenStack CPI is an implementation of BOSH CPI. It allows BOSH to interface with
 
 ##Delete Stemcell
 
+![openstack_cpi_deletestemcell](https://raw.github.com/rajdeepd/openstack-bosh-cpi/master/images/openstack_cpi_deletestemcell.png)
+
 ##Create VM ##
 
-
+![openstack_cpi_create_vm](https://raw.github.com/rajdeepd/openstack-bosh-cpi/master/images/openstack_cpi_create_vm.png)
 ##Delete VM ##
 
 ##Create Volume ##
