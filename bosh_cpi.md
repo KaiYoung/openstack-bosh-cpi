@@ -46,7 +46,7 @@ Figure below shows the flow control for the method `create_stemcell(image_path, 
 
 ##Delete VM ##
 
-##Create Volume ##
+##Create Disk ##
 
 1. Check if size passed is integer, is greater than 1024 and less than 1024*1000, else throw an error
 2. Create `volume_params`
@@ -56,4 +56,6 @@ Figure below shows the flow control of `create_disk` method
 
 ![openstack_cpi_create_disk](https://raw.github.com/rajdeepd/openstack-bosh-cpi/master/images/openstack_cpi_create_disk.png)
 
-##Delete Volume##
+##Delete Disk##
+
+![openstack_cpi_delete_disk](https://raw.github.com/rajdeepd/openstack-bosh-cpi/master/images/openstack_cpi_delete_disk.png)
