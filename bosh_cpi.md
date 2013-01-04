@@ -10,8 +10,14 @@ Implementation of `def initialize(options)` method.
 	+ `@agent_properties`	
 	+ `@openstack_properties`
 	+ `@registry_propertiess`
-3. Populate the `openstack_params` and Instantiate `Fog::Compute` instance
-4. Populate the `glance_params`and instantiate `Fog::Image` instance
+3. Populate the `openstack_params` and connect to remove Nova Service
+	1. Instantiate `Fog::Compute` instance
+	2. `Fog::Compute::OpenStack` instance is created
+	3. A New `Fog::Connection` object connects with the remove Nova Compute Service
+4. Populate the `glance_params`and connect to remove Glance service
+       1.  Instantiate `Fog::Image` instance
+       2.  `Fog::Image::OpenStack` instance is created
+       3.  A New `Fog::Connection` object connects with the remove Glance Service
 5. Instantiate `Registry_Client`.
 
 Figure below shows the flow of control.
