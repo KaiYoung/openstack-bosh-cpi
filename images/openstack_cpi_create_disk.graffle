@@ -108,7 +108,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{304, 122}, {143, 17}}</string>
+			<string>{{304, 124.54520702362061}, {143, 17}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -175,8 +175,8 @@
 			<integer>353</integer>
 			<key>Points</key>
 			<array>
-				<string>{300.01228332519565, 608.98254692689363}</string>
-				<string>{231.03073883056641, 608.9825803205315}</string>
+				<string>{300.01228332519565, 608.98254741887342}</string>
+				<string>{233.03073883056641, 608.9825803205315}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -198,7 +198,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{61, 590.5560302734375}, {170.03073883056641, 36.85308837890625}}</string>
+			<string>{{63, 590.5560302734375}, {170.03073883056641, 36.85308837890625}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -1858,7 +1858,7 @@ OR}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2013-01-07 09:10:57 +0000</string>
+	<string>2013-01-07 11:25:38 +0000</string>
 	<key>Modifier</key>
 	<string>rajdeepd</string>
 	<key>NotesVisible</key>
