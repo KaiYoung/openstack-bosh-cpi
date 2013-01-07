@@ -66,4 +66,5 @@ Figure below shows the flow control of `create_disk` method
 
 ##Delete Disk##
 
+This method deletes the volume created in OpenStack Nova Compute 
 ![openstack_cpi_delete_disk](https://raw.github.com/rajdeepd/openstack-bosh-cpi/master/images/openstack_cpi_delete_disk.png)
