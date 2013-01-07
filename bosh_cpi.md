@@ -56,7 +56,9 @@ Figure below shows the flow control for the method `create_stemcell(image_path, 
 
 1. Check if size passed is integer, is greater than 1024 and less than 1024*1000, else throw an error
 2. Create `volume_params`
-3. Call `create_volume` on `Fog::Volume` service
+3. Call `create()volume_params)` on `Fog::Compute` service
+     1. `create_volume` request on `Fog::Volume::OpenStack` 
+     2. Opens a `Fog::Connection` request to access the remote service and create a volume.
 
 Figure below shows the flow control of `create_disk` method
 
