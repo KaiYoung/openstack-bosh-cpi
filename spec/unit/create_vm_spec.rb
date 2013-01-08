@@ -79,6 +79,52 @@ describe Bosh::OpenStackCloud::Cloud, "create_vm" do
     vm_id.should == "i-test"
   end
 
+  it "passes dns servers in server user data when present" do
+    unique_name = UUIDTools::UUID.random_create.to_s
+
+    user_data = {
+        "registry" => {
+          "endpoint" => "http://registry:3333"
+        },
+        "server" => {
+          "name" => "vm-#{unique_name}"
+        },
+        "dns" => {
+          "nameserver" => ["1.2.3.4"]
+        }
+    }
+    server = double("server", :id => "i-test", :name => "i-test")
+    image = double("image", :id => "sc-id", :name => "sc-id")
+    flavor = double("flavor", :id => "f-test", :name => "m1.tiny")
+    address = double("address", :id => "a-test", :ip => "10.0.0.1",
+                     :instance_id => "i-test")
+    network_spec = dynamic_network_spec
+    network_spec["dns"] = ["1.2.3.4"]
+
+    cloud = mock_cloud do |openstack|
+      openstack.servers.should_receive(:create).
+          with(openstack_params(unique_name, user_data, %w[default])).
+          and_return(server)
+      openstack.images.should_receive(:find).and_return(image)
+      openstack.flavors.should_receive(:find).and_return(flavor)
+      openstack.addresses.should_receive(:each).and_yield(address)
+    end
+
+    cloud.should_receive(:generate_unique_name).and_return(unique_name)
+    address.should_receive(:server=).with(nil)
+    cloud.should_receive(:wait_resource).with(server, :active, :state)
+
+    @registry.should_receive(:update_settings).
+        with("i-test", agent_settings(unique_name, network_spec))
+
+    vm_id = cloud.create_vm("agent-id", "sc-id",
+                            resource_pool_spec,
+                            { "network_a" => network_spec },
+                            nil, { "test_env" => "value" })
+    vm_id.should == "i-test"
+  end
+
+
   it "creates an OpenStack server with security group" do
     unique_name = UUIDTools::UUID.random_create.to_s
     user_data = {
