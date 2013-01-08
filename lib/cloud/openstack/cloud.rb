@@ -234,18 +234,9 @@ module Bosh::OpenStackCloud
                   network_spec = nil, disk_locality = nil, environment = nil)
       with_thread_name("create_vm(#{agent_id}, ...)") do
         @logger.info("Creating new server...")
-        network_configurator = NetworkConfigurator.new(network_spec)
-
         server_name = "vm-#{generate_unique_name}"
-        user_data = {
-          "registry" => {
-            "endpoint" => @registry.endpoint
-          },
-          "server" => {
-            "name" => server_name
-          }
-        }
 
+        network_configurator = NetworkConfigurator.new(network_spec)
         security_groups =
           network_configurator.security_groups(@default_security_groups)
         @logger.debug("Using security groups: `#{security_groups.join(', ')}'")
@@ -269,7 +260,8 @@ module Bosh::OpenStackCloud
           :flavor_ref => flavor.id,
           :key_name => resource_pool["key_name"] || @default_key_name,
           :security_groups => security_groups,
-          :user_data => Yajl::Encoder.encode(user_data)
+          :user_data => Yajl::Encoder.encode(user_data(server_name,
+                                                       network_spec))
         }
 
         availability_zone = select_availability_zone(disk_locality,
@@ -541,6 +533,39 @@ module Bosh::OpenStackCloud
     # @return [String] Unique name
     def generate_unique_name
       UUIDTools::UUID.random_create.to_s
+    end
+
+    ##
+    # Prepare server user data
+    #
+    # @param [String] server_name server name
+    # @param [Hash] network_spec network specification
+    # @return [Hash] server user data
+    def user_data(server_name, network_spec)
+      data = {}
+
+      data["registry"] = { "endpoint" => @registry.endpoint }
+      data["server"] = { "name" => server_name }
+
+      with_dns(network_spec) do |servers|
+        data["dns"] = { "nameserver" => servers }
+      end
+
+      data
+    end
+
+    ##
+    # Extract dns server list from network spec and yield the the list
+    #
+    # @param [Hash] network_spec network specification for instance
+    # @yield [Array]
+    def with_dns(network_spec)
+      network_spec.each_value do |properties|
+        if properties.has_key?("dns") && !properties["dns"].nil?
+          yield properties["dns"]
+          return
+        end
+      end
     end
 
     ##
