@@ -52,6 +52,18 @@ Figure below shows the flow control for the method `create_stemcell(image_path, 
 
 ##Delete VM ##
 
+Implementation of `delete_vm(server_id)`. This method deletes the VM created in Nova Compute.
+
+1. Get the `server_id` of the VM to be deleted
+	* 1.1, 1.2 : Send the request `get_server_details` to Compute API Server through  `Fog::Connection`
+2.  If `server` object returned is not null call `server.destroy`. This will send `delete_server` request to Nova Compute.
+	* 2.1, 2.2 : Create and send the `delete_server` request through `Fog::Connection` 
+3.  Delete the settings from Registry by calling `delete_settings` method.
+
+Figure below shows the flow control for `delete_vm` method
+
+![openstack_cpi_delete_vm](https://raw.github.com/piston/openstack-bosh-cpi/master/images/openstack_cpi_delete_vm.png)
+
 ##Create Disk ##
 
 1. Check if size passed is integer, is greater than 1024 and less than 1024*1000, else throw an error
