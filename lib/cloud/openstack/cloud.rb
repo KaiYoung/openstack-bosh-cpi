@@ -482,6 +482,26 @@ module Bosh::OpenStackCloud
     end
 
     ##
+    # Set metadata for an OpenStack server
+    #
+    # @param [String] server_id OpenStack server UUID
+    # @param [Hash] metadata Metadata key/value pairs
+    # @return [void]
+    def set_vm_metadata(server_id, metadata)
+      with_thread_name("set_vm_metadata(#{server_id}, ...)") do
+        server = @openstack.servers.get(server_id)
+        unless server
+          cloud_error("Server `#{server_id}' not found")
+        end
+
+        metadata.each do |name, value|
+          value = "" if value.nil? # value is required
+          server.metadata.update(name => value)
+        end
+      end
+    end
+
+    ##
     # Validates the deployment
     #
     # @note Not implemented in the OpenStack CPI
