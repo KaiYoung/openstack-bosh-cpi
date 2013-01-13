@@ -62,7 +62,7 @@ Implementation of `delete_vm(server_id)`. This method deletes the VM created in 
 
 Figure below shows the flow control for `delete_vm` method
 
-![openstack_cpi_delete_vm](https://raw.github.com/rajdeepd/openstack-bosh-cpi/master/images/openstack_cpi_delete_vm.png)
+![openstack_cpi_delete_vm](https://raw.github.com/piston/openstack-bosh-cpi/master/images/openstack_cpi_delete_vm.png)
 
 ##Create Disk ##
 
