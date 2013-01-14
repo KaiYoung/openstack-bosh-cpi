@@ -1,3 +1,10 @@
+=== 0.0.6 - 2013-01-13
+* Add Bundler tasks
+* Don't show task 'bundle install' if BundlerTask is not loaded
+* Docs for OpenStack CPI
+* Pass DNS server list to server user data
+* Implement set_vm_metadata
+
 === 0.0.5 - 2012-12-05
 * Use stemcell version & name when present
 * Store stemcell name & version at image properties
