@@ -46,7 +46,8 @@ def mock_cloud_options
       "auth_url" => "http://127.0.0.1:5000/v2.0/tokens",
       "username" => "admin",
       "api_key" => "nova",
-      "tenant" => "admin"
+      "tenant" => "admin",
+      "region" => "RegionOne"
     },
     "registry" => {
       "endpoint" => "localhost:42288",
