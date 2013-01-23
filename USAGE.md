@@ -19,6 +19,8 @@ These options are passed to the OpenStack CPI when it is instantiated.
   OpenStack tenant name
 * `region` (optional)
   OpenStack region
+* `endpoint_type` (optional)
+  OpenStack endpoint type for Glance
 * `default_key_name` (required)
   default OpenStack ssh key name to assign to created virtual machines
 * `default_security_group` (required)
