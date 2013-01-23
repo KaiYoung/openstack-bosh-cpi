@@ -1,3 +1,9 @@
+=== 0.0.7 - 2013-01-23
+* Upgrade fog gem to v1.9.0
+* Added support for Glance regions
+* Cleanup cloud unit test
+* Add support for configurable Glance endpoint type
+
 === 0.0.6 - 2013-01-13
 * Add Bundler tasks
 * Don't show task 'bundle install' if BundlerTask is not loaded

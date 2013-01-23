@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bosh_openstack_cpi (0.0.6)
+    bosh_openstack_cpi (0.0.7)
       bosh_common (>= 0.5.1)
       bosh_cpi (>= 0.5.1)
       fog (>= 1.9.0)
